@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "adcb63e6-8682-4826-8223-d70607acfc60",
+		"name": "Gateway Service SB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21249940"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login From Gateway",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"token\", pm.response.headers.get(\"x-auth-code\"))\r",
+									"pm.globals.set(\"userId\", pm.response.headers.get(\"x-user-id\"))\r",
+									"pm.globals.set(\"username\", pm.response.headers.get(\"x-username\"))\r",
+									"pm.globals.set(\"refreshToken\", pm.response.headers.get(\"x-refresh-token\"))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"testuser\",\r\n    \"password\": \"testuser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostAddress}}{{gwsContextAndPort}}/auth/login",
+							"host": [
+								"{{hostAddress}}{{gwsContextAndPort}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Load User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-username",
+								"value": "{{username}}",
+								"type": "text"
+							},
+							{
+								"key": "x-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-code",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostAddress}}{{gwsContextAndPort}}/user/me",
+							"host": [
+								"{{hostAddress}}{{gwsContextAndPort}}"
+							],
+							"path": [
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-username",
+								"value": "{{username}}",
+								"type": "text"
+							},
+							{
+								"key": "x-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-code",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Test User\",\r\n    \"emailId\": \"testuser@example.com\",\r\n    \"username\": \"testuser\",\r\n    \"password\": \"testuser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostAddress}}{{gwsContextAndPort}}/user/createUser",
+							"host": [
+								"{{hostAddress}}{{gwsContextAndPort}}"
+							],
+							"path": [
+								"user",
+								"createUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-username",
+								"value": "{{username}}",
+								"type": "text"
+							},
+							{
+								"key": "x-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-code",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"65b149925d2f9f19398449dd\",\r\n    \"fullName\": \"Test User\",\r\n    \"emailId\": \"testuser@example.com\",\r\n    \"username\": \"testuser\",\r\n    \"password\": \"testuser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostAddress}}{{gwsContextAndPort}}/user/updateUser",
+							"host": [
+								"{{hostAddress}}{{gwsContextAndPort}}"
+							],
+							"path": [
+								"user",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-username",
+								"value": "{{username}}",
+								"type": "text"
+							},
+							{
+								"key": "x-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-code",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostAddress}}{{gwsContextAndPort}}/user/delete",
+							"host": [
+								"{{hostAddress}}{{gwsContextAndPort}}"
+							],
+							"path": [
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

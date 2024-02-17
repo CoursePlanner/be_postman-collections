@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "199d1ad0-256a-4141-af4e-1db2616a5b5f",
+		"name": "User Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21249940"
+	},
+	"item": [
+		{
+			"name": "Create User Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\": \"Test User\",\r\n    \"emailId\": \"testuser@example.com\",\r\n    \"username\": \"testuser\",\r\n    \"password\": \"testuser\"\r\n}"
+				},
+				"url": {
+					"raw": "{{hostAddress}}{{userServiceContextAndPort}}/create",
+					"host": [
+						"{{hostAddress}}{{userServiceContextAndPort}}"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{hostAddress}}{{userServiceContextAndPort}}/retrieve",
+					"host": [
+						"{{hostAddress}}{{userServiceContextAndPort}}"
+					],
+					"path": [
+						"retrieve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-user-id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "x-email-id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"65b149925d2f9f19398449dd\",\r\n    \"emailId\": \"testuser_updated@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{hostAddress}}{{userServiceContextAndPort}}/update",
+					"host": [
+						"{{hostAddress}}{{userServiceContextAndPort}}"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Profile",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{hostAddress}}{{userServiceContextAndPort}}/delete/65c883285315b75a0f9fe7ac",
+					"host": [
+						"{{hostAddress}}{{userServiceContextAndPort}}"
+					],
+					"path": [
+						"delete",
+						"65c883285315b75a0f9fe7ac"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load All Users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pagination\": {\r\n        \"size\": 10,\r\n        \"page\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostAddress}}{{userServiceContextAndPort}}/users",
+					"host": [
+						"{{hostAddress}}{{userServiceContextAndPort}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

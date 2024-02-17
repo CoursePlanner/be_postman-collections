@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "153fe72e-83e0-473e-a83d-bd6963b78596",
+		"name": "Authentication Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21249940"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseObj = pm.response.json()\r",
+							"pm.globals.set(\"token\", responseObj.token || \"\")\r",
+							"pm.globals.set(\"refreshToken\", responseObj.refreshToken || \"\")\r",
+							"pm.globals.set(\"username\", responseObj.username || \"\")\r",
+							"pm.globals.set(\"userId\", responseObj.userId || \"\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testuser",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "testuser",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-user-id",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "x-email-id",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userProfileDTO\": {\r\n        \"userId\": \"65b149925d2f9f19398449dd\",\r\n        \"fullName\": \"Test User\",\r\n        \"emailId\": \"testuser@example.com\",\r\n        \"username\": \"testuser\",\r\n        \"password\": \"$2a$10$5yCtCjGyEZlGotB71uL1MOqJLmFPTjRdAb/VXiLLMCVLyC3Lk0ipe\",\r\n        \"enabled\": true,\r\n        \"authorities\": [\r\n            \"self-read\",\r\n            \"self-write\",\r\n            \"self-update\",\r\n            \"self-delete\"\r\n        ],\r\n        \"createdOn\": \"2023-11-28T12:29:20.402783\",\r\n        \"updatedOn\": \"2023-12-04T21:48:34.257229\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "{{hostAddress}}{{authenticationServiceContextAndPort}}/login",
+					"host": [
+						"{{hostAddress}}{{authenticationServiceContextAndPort}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{hostAddress}}{{authenticationServiceContextAndPort}}/validate",
+					"host": [
+						"{{hostAddress}}{{authenticationServiceContextAndPort}}"
+					],
+					"path": [
+						"validate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
