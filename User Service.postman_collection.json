@@ -52,6 +52,11 @@
 						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "x-username",
+						"value": "{{username}}",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -155,7 +160,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pagination\": {\r\n        \"size\": 10,\r\n        \"page\": 1\r\n    }\r\n}",
+					"raw": "{\r\n    \"pagination\": {\r\n        \"size\": 10,\r\n        \"page\": 0\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

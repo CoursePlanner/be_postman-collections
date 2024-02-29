@@ -240,6 +240,147 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Load By Order ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-code",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							},
+							{
+								"key": "x-username",
+								"value": "{{username}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostAddress}}{{gwsContextAndPort}}/orders/item/1",
+							"host": [
+								"{{hostAddress}}{{gwsContextAndPort}}"
+							],
+							"path": [
+								"orders",
+								"item",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-code",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-username",
+								"value": "{{username}}",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderId\": null,\n    \"productId\": 1,\n    \"productName\": \"Demo Product\",\n    \"productPrice\": 150.00,\n    \"quantity\": 1,\n    \"purchasedOn\": null,\n    \"orderStatus\": null,\n    \"paymentId\": null,\n    \"userId\": \"{{userId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostAddress}}{{gwsContextAndPort}}/orders/create",
+							"host": [
+								"{{hostAddress}}{{gwsContextAndPort}}"
+							],
+							"path": [
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Load All Orders Of A User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-username",
+								"value": "{{username}}",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-code",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-refresh-token",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"{{userId}}\",\n    \"fromDate\": \"\",\n    \"toDate\": \"\",\n    \"pagination\": {\n        \"page\": 0,\n        \"size\": 10\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostAddress}}{{gwsContextAndPort}}/orders/all",
+							"host": [
+								"{{hostAddress}}{{gwsContextAndPort}}"
+							],
+							"path": [
+								"orders",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

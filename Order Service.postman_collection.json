@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "45260b91-fe38-454c-b0f0-47cf1e98af7f",
+		"name": "Order Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21249940"
+	},
+	"item": [
+		{
+			"name": "Load By Order ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-user-id",
+						"value": "{{userId}}",
+						"type": "text"
+					},
+					{
+						"key": "x-order-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{hostAddress}}{{orderServiceContextAndPort}}/order",
+					"host": [
+						"{{hostAddress}}{{orderServiceContextAndPort}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-user-id",
+						"value": "{{userId}}",
+						"type": "text"
+					},
+					{
+						"key": "x-order-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\": null,\n    \"productId\": 1,\n    \"productName\": \"Demo Product\",\n    \"productPrice\": 150.00,\n    \"quantity\": 1,\n    \"purchasedOn\": null,\n    \"orderStatus\": null,\n    \"paymentId\": null,\n    \"userId\": \"{{userId}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostAddress}}{{orderServiceContextAndPort}}/create",
+					"host": [
+						"{{hostAddress}}{{orderServiceContextAndPort}}"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load All Orders Of A User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-user-id",
+						"value": "{{userId}}",
+						"type": "text"
+					},
+					{
+						"key": "x-order-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"{{userId}}\",\n    \"fromDate\": \"\",\n    \"toDate\": \"\",\n    \"pagination\": {\n        \"page\": 0,\n        \"size\": 10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostAddress}}{{orderServiceContextAndPort}}/orders",
+					"host": [
+						"{{hostAddress}}{{orderServiceContextAndPort}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
